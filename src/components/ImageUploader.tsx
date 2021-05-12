@@ -37,13 +37,15 @@ const ImageUploader = () => {
 
   return (
     <>
-      <input
-        type="file"
-        accept="image/jpeg, image/png"
-        onChange={(event) => {
-          handleChangeFile(event);
-        }}
-      />
+      <div>
+        <input
+          type="file"
+          accept="image/jpeg, image/png"
+          onChange={(event) => {
+            handleChangeFile(event);
+          }}
+        />
+      </div>
       <div>
         <ImageRender preview={preview} />
       </div>
