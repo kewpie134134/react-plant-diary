@@ -2,7 +2,7 @@ import React from 'react';
 
 import ImageUploader from '../components/ImageUploader';
 
-const Upload = () => {
+const Upload = (): JSX.Element => {
   return (
     <>
       <h1>画像をアップロードする</h1>

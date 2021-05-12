@@ -4,7 +4,7 @@ type PreviewProps = {
   preview: string;
 };
 
-const ImageUploader = () => {
+const ImageUploader = (): JSX.Element => {
   // 選択された画像データを保持しておく State
   const [preview, setPreview] = useState<string>('');
 
