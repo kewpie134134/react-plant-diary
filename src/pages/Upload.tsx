@@ -1,10 +1,13 @@
 import React from 'react';
 
+import ImageUploader from '../components/ImageUploader';
+
 const Upload = () => {
   return (
     <>
-      <h1>Upload!</h1>
-      <a href="/">Home</a>
+      <h1>画像をアップロードする</h1>
+      <ImageUploader />
+      <a href="/">ホーム画面へ</a>
     </>
   );
 };
