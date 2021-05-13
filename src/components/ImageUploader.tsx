@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { db } from '../firebase/Firebase';
+import { db, storage } from '../firebase/Firebase';
 
 type PreviewProps = {
   preview: string;
@@ -22,7 +22,18 @@ const ImageUploader = (): JSX.Element => {
     if (Object.values(preview)[0] === '') return null;
 
     // ファイルが選択されている場合、表示させる
-    const onUploadImage = () => {
+    // ※ Firebase Storage のルールを全て許可してしまったので、認証機能実装後に
+    // ※ ルールの見直しをする必要がある
+    const onUploadImage = async () => {
+      // Data URI を Blob に変換する
+      const response = await fetch(preview.preview);
+      const blob = await response.blob();
+      // Firebase Storage に画像をアップロード
+      const ref = storage.ref().child('images').child('2021-05-01.png');
+      ref.put(blob).then((_snapshot) => {
+        console.log('アップロードが完了しました！');
+      });
+
       // firestore へ値を送信
       db.collection('images').doc('2021-05-01').set({ base64: 'base64' });
       console.log('あっぷろーど');
