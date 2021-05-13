@@ -23,6 +23,7 @@ const ImageUploader = (): JSX.Element => {
 
     // ファイルが選択されている場合、表示させる
     const onUploadImage = () => {
+      // firestore へ値を送信
       db.collection('images').doc('2021-05-01').set({ base64: 'base64' });
       console.log('あっぷろーど');
     };
