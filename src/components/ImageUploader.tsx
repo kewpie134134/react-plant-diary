@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { db } from '../firebase/Firebase';
 
 type PreviewProps = {
   preview: string;
@@ -22,6 +23,7 @@ const ImageUploader = (): JSX.Element => {
 
     // ファイルが選択されている場合、表示させる
     const onUploadImage = () => {
+      db.collection('images').doc('2021-05-01').set({ base64: 'base64' });
       console.log('あっぷろーど');
     };
 
