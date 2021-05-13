@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { db } from '../firebase/Firebase';
-
 const Home = (): JSX.Element => {
   return (
     <>
