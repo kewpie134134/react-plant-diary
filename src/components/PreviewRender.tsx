@@ -26,20 +26,27 @@ const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
     // 拡張子
     const fileExpand = blob.type.split('/')[1];
 
-    // Firebase Storage に画像をアップロード
+    // Firebase Storage に画像をアップロードするための参照を作成
     const ref = storage
       .ref()
       .child('images')
       .child(`${calendarDate.split('T')[0]}.${fileExpand}`);
-    ref.put(blob).then((snapshot) => {
-      console.log('アップロードが完了しました！');
-    });
-
-    // firestore へ値を送信
-    db.collection('images')
-      .doc(`${calendarDate.split('T')[0]}`)
-      .set({ base64: 'base64' });
-    console.log('あっぷろーど');
+    // Firebase Storage に画像をアップロード
+    ref
+      .put(blob)
+      .then((snapshot) => {
+        console.log(snapshot);
+        console.log('FireStorage に画像をアップロードしました！');
+      })
+      // Firebase Storage に画像をアップロード後、Storage 上の URL を FireStore に登録
+      .then(() => {
+        ref.getDownloadURL().then((url: string) => {
+          db.collection('images')
+            .doc(`${calendarDate.split('T')[0]}`)
+            .set({ downloadUrl: url });
+          console.log('FireStore に downloadURL を格納しました！');
+        });
+      });
   };
 
   return (
