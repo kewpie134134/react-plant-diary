@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { db, storage } from '../firebase/Firebase';
+import CalendarDatePicker from '../components/CalendarDatePicker';
 
 type PreviewProps = {
   preview: string;
@@ -35,6 +37,7 @@ const previewRender = (preview: PreviewProps): JSX.Element | null => {
     <>
       <img src={Object.values(preview)[0]} alt="preview" />
       <div>
+        <CalendarDatePicker />
         <button onClick={onUploadImage}>アップロード</button>
       </div>
     </>

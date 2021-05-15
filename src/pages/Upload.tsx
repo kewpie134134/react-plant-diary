@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import ImageRender from '../components/previewRender';
+import ImageRender from '../components/PreviewRender';
 
 const Upload = (): JSX.Element => {
   // 選択された画像データを保持しておく State
