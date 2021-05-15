@@ -4,10 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ja from 'date-fns/locale/ja';
 import moment from 'moment';
 
-import {
-  parseAsMoment,
-  toUtcIso8601str,
-} from '../components/DatePickerFunctions';
+import { parseAsMoment } from '../components/DatePickerFunctions';
 
 // PreviewRender.tsx から送られてくる引数の型宣言
 type CalendarDatePickerProps = {
@@ -24,7 +21,7 @@ const CalendarDatePicker = ({
 }: CalendarDatePickerProps): JSX.Element => {
   // react-datepicker でカレンダーの日付が選択されたら、その値をセットする
   const handleChange = (selectedDate: Date): void => {
-    setCalendarDate(toUtcIso8601str(moment(selectedDate)));
+    setCalendarDate(moment(selectedDate).format());
   };
 
   return (
