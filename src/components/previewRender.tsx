@@ -27,7 +27,10 @@ const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
     const fileExpand = blob.type.split('/')[1];
 
     // Firebase Storage に画像をアップロード
-    const ref = storage.ref().child('images').child(`2021-05-01.${fileExpand}`);
+    const ref = storage
+      .ref()
+      .child('images')
+      .child(`${calendarDate.split('T')[0]}.${fileExpand}`);
     ref.put(blob).then((snapshot) => {
       console.log('アップロードが完了しました！');
     });
