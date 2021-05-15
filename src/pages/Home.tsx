@@ -3,7 +3,7 @@ import { storage } from '../firebase/Firebase';
 
 const Home = (): JSX.Element => {
   const [imageUrl, setImageUrl] = useState<string>('');
-  const ref = storage.ref().child('images').child('2021-05-13.png');
+  const ref = storage.ref().child('images').child('2021-05-15.png');
   ref.getDownloadURL().then((url: string) => {
     setImageUrl(url);
   });
