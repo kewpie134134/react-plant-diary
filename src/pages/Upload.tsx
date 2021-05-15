@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import PreviewImageRender from '../components/PreviewImageRender';
+import PreviewRender from '../components/PreviewRender';
 
 const Upload = (): JSX.Element => {
   // 選択された画像データを保持しておく State
@@ -25,7 +25,7 @@ const Upload = (): JSX.Element => {
         />
       </div>
       <div>
-        <PreviewImageRender preview={preview} />
+        <PreviewRender preview={preview} />
       </div>{' '}
       <a href="/">ホーム画面へ</a>
     </>
