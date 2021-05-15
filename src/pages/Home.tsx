@@ -34,7 +34,11 @@ const Home = (): JSX.Element => {
       <a href="/upload">アップロード画面へ</a>
       <div>
         {imageUrls.map((imageUrl) => {
-          return <div key={imageUrl.date}>{imageUrl.downloadUrl}</div>;
+          return (
+            <div key={imageUrl.date}>
+              <img src={imageUrl.downloadUrl}></img>
+            </div>
+          );
         })}
       </div>
     </>
