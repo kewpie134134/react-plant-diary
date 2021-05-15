@@ -9,7 +9,7 @@ type PreviewProps = {
 };
 
 // 選択した画像を表示させるためのプレビュー用コンポーネント
-const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
+const PreviewImageRender = (preview: PreviewProps): JSX.Element | null => {
   // ファイル登録用の日付を格納
   const [calendarDate, setCalendarDate] = useState<string>(moment().format());
 
@@ -57,4 +57,4 @@ const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
     </>
   );
 };
-export default PreviewRender;
+export default PreviewImageRender;
