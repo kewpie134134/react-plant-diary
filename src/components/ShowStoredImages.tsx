@@ -31,9 +31,13 @@ const ShowStoredImages = (): JSX.Element => {
     <div>
       {imageUrls.map((imageUrl) => {
         return (
-          <div key={imageUrl.date}>
-            <img src={imageUrl.downloadUrl}></img>
-          </div>
+          <figure key={imageUrl.date}>
+            <img
+              src={imageUrl.downloadUrl}
+              title={`${imageUrl.date}`}
+              alt={`${imageUrl.date}`}></img>
+            <legend>{imageUrl.date}</legend>
+          </figure>
         );
       })}
     </div>
