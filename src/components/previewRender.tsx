@@ -38,6 +38,8 @@ const previewRender = (preview: PreviewProps): JSX.Element | null => {
       <img src={Object.values(preview)[0]} alt="preview" />
       <div>
         <CalendarDatePicker />
+      </div>
+      <div>
         <button onClick={onUploadImage}>アップロード</button>
       </div>
     </>
