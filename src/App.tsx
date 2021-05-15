@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Upload from './pages/Upload';
 
-function App() {
+const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
@@ -13,6 +13,6 @@ function App() {
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

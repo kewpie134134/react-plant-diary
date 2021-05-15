@@ -1,11 +1,10 @@
 import React from 'react';
-import Upload from './Upload';
 
-const Home = () => {
+const Home = (): JSX.Element => {
   return (
     <>
-      <h1>Home！</h1>
-      <a href="/upload">Upload</a>
+      <h1>🌻 ひまわり図鑑 🌻</h1>
+      <a href="/upload">アップロード画面へ</a>
     </>
   );
 };

@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Upload = () => {
+import ImageRender from '../components/PreviewRender';
+
+const Upload = (): JSX.Element => {
+  // 選択された画像データを保持しておく State
+  const [preview, setPreview] = useState<string>('');
+
+  const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+    if (files) {
+      setPreview(window.URL.createObjectURL(files[0]));
+    }
+  };
   return (
     <>
-      <h1>Upload!</h1>
-      <a href="/">Home</a>
+      <h1>画像をアップロードする</h1>
+      <div>
+        <input
+          type="file"
+          accept="image/jpeg, image/png"
+          onChange={(event) => {
+            handleChangeFile(event);
+          }}
+        />
+      </div>
+      <div>
+        <ImageRender preview={preview} />
+      </div>{' '}
+      <a href="/">ホーム画面へ</a>
     </>
   );
 };
