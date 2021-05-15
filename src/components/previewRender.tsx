@@ -36,7 +36,9 @@ const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
     });
 
     // firestore へ値を送信
-    db.collection('images').doc('2021-05-01').set({ base64: 'base64' });
+    db.collection('images')
+      .doc(`${calendarDate.split('T')[0]}`)
+      .set({ base64: 'base64' });
     console.log('あっぷろーど');
   };
 
