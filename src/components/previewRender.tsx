@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import moment from 'moment';
+import { toUtcIso8601str } from '../components/DatePickerFunctions';
 
 import { db, storage } from '../firebase/Firebase';
 import CalendarDatePicker from '../components/CalendarDatePicker';
@@ -8,7 +10,12 @@ type PreviewProps = {
 };
 
 // 選択した画像を表示させるためのプレビュー用コンポーネント
-const previewRender = (preview: PreviewProps): JSX.Element | null => {
+const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
+  // ファイル登録用の日付を格納
+  const [calendarDate, setCalendarDate] = useState<string>(
+    toUtcIso8601str(moment())
+  );
+
   // ファイルが選択されているか確認
   if (Object.values(preview)[0] === '') return null;
 
@@ -37,7 +44,10 @@ const previewRender = (preview: PreviewProps): JSX.Element | null => {
     <>
       <img src={Object.values(preview)[0]} alt="preview" />
       <div>
-        <CalendarDatePicker />
+        <CalendarDatePicker
+          calendarDate={calendarDate}
+          setCalendarDate={setCalendarDate}
+        />
       </div>
       <div>
         <button onClick={onUploadImage}>アップロード</button>
@@ -45,4 +55,4 @@ const previewRender = (preview: PreviewProps): JSX.Element | null => {
     </>
   );
 };
-export default previewRender;
+export default PreviewRender;
