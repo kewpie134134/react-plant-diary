@@ -18,7 +18,7 @@ const Login = ({ history }: { history: H.History }) => {
     // email と password の内容を取得
     const { email, password } = event.target.elements;
     // AuthProvider の login 関数を使用
-    login(email.value, password.value, history);
+    login ? login(email.value, password.value, history) : null;
   };
 
   return (

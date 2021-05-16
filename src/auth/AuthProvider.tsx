@@ -12,7 +12,7 @@ import { auth } from '../firebase/Firebase';
 // createContext でエラーを回避するために型定義を作成
 type ContextProps = {
   currentUser: firebase.User | null;
-  login: any;
+  login: (email: string, password: string, history: H.History) => Promise<void>;
 };
 
 // context の作成
