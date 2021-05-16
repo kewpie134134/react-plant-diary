@@ -7,13 +7,20 @@ const Login = (): JSX.Element => {
   const { login } = useContext(AuthContext);
 
   // ログインボタンが押されたら発火する。
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // event 処理を一時停止させる
     event.preventDefault();
+
     // email と password の内容を取得
-    const { email, password } = event.target.elements;
+    let email = '';
+    let password = '';
+    Array.prototype.forEach.call(event.currentTarget.elements, (element) => {
+      if (element.name === 'email') email = element.value;
+      if (element.name === 'password') password = element.value;
+    });
+
     // AuthProvider の login 関数を使用
-    login ? login(email.value, password.value) : null;
+    login ? login(email, password) : null;
   };
 
   return (
