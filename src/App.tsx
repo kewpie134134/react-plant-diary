@@ -6,6 +6,7 @@ import PrivateRoute from './auth/PrivateRoute';
 import Home from './pages/Home';
 import Upload from './pages/Upload';
 import Login from './pages/Login';
+import Footer from './components/Footer';
 
 const App = (): JSX.Element => {
   return (
@@ -17,6 +18,7 @@ const App = (): JSX.Element => {
           <Route exact path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
+      <Footer>test</Footer>
     </AuthProvider>
   );
 };
