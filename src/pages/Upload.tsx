@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import PreviewRender from '../components/PreviewRender';
 
@@ -28,7 +27,6 @@ const Upload = (): JSX.Element => {
       <div>
         <PreviewRender preview={preview} />
       </div>{' '}
-      <Link to="/">ホーム画面へ</Link>
     </>
   );
 };
