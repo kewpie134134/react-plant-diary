@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
 
@@ -13,6 +14,7 @@ firebase.initializeApp({
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 });
 
+export const auth = firebase.auth();
 // firestore を使用するための初期設定
 export const db = firebase.firestore();
 // storage for firebase を使用するための初期設定
