@@ -4,7 +4,6 @@
  */
 
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
-import * as H from 'history';
 import firebase from 'firebase/app';
 
 import { auth } from '../firebase/Firebase';
@@ -12,7 +11,7 @@ import { auth } from '../firebase/Firebase';
 // createContext でエラーを回避するために型定義を作成
 type ContextProps = {
   currentUser: firebase.User | null;
-  login: (email: string, password: string, history: H.History) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
 };
 
 // context の作成
@@ -30,10 +29,9 @@ export const AuthProvider = ({
   const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
 
   // ユーザーをログインさせる関数
-  const login = async (email: string, password: string, history: H.History) => {
+  const login = async (email: string, password: string) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      history.push('/');
     } catch (error) {
       alert(error);
     }
