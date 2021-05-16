@@ -12,8 +12,8 @@ import Footer from './components/Footer';
 const App = (): JSX.Element => {
   return (
     <AuthProvider>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/upload" component={Upload} />
