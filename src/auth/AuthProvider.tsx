@@ -11,7 +11,7 @@ import { auth } from '../firebase/Firebase';
 
 // createContext でエラーを回避するために型定義を作成
 type ContextProps = {
-  currentUser: any;
+  currentUser: firebase.User | null;
   login: any;
 };
 
