@@ -5,13 +5,15 @@
 
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import * as H from 'history';
+import firebase from 'firebase/app';
 
 import { auth } from '../firebase/Firebase';
 
 // createContext でエラーを回避するために型定義を作成
 type ContextProps = {
   currentUser: any;
-  login: any;
+  loginWithEmail: any;
+  loginWithGoogle: any;
 };
 
 // context の作成
@@ -28,11 +30,25 @@ export const AuthProvider = ({
   // ログインユーザーを格納しておく変数を作成
   const [currentUser, setCurrentUser] = useState<any | null>(null);
 
-  // ユーザーをログインさせる関数
-  const login = async (email: string, password: string, history: H.History) => {
+  // ユーザーをメールアドレスからログインさせる関数
+  const loginWithEmail = async (
+    email: string,
+    password: string,
+    history: H.History
+  ) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       history.push('/');
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  // ユーザーを Google 認証からログインさせる関数
+  const loginWithGoogle = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try {
+      await auth.signInWithPopup(provider);
     } catch (error) {
       alert(error);
     }
@@ -44,7 +60,8 @@ export const AuthProvider = ({
 
   return (
     // Context を使用して、認証に必要な情報をコンポーネントツリーに流し込む
-    <AuthContext.Provider value={{ login, currentUser }}>
+    <AuthContext.Provider
+      value={{ loginWithEmail, loginWithGoogle, currentUser }}>
       {children}
     </AuthContext.Provider>
   );

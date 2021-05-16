@@ -7,7 +7,7 @@ import { AuthContext } from '../auth/AuthProvider';
 const Login = ({ history }: { history: H.History }) => {
   // ★ historyとは？？？？
   // AuthContext から login 関数を受け取る
-  const { login } = useContext(AuthContext);
+  const { loginWithEmail, loginWithGoogle } = useContext(AuthContext);
 
   // ログインボタンが押されたら発火する。
   // アップデート後の情報（history）を渡すために、export 時には withRouter(Login) として
@@ -18,7 +18,12 @@ const Login = ({ history }: { history: H.History }) => {
     // email と password の内容を取得
     const { email, password } = event.target.elements;
     // AuthProvider の login 関数を使用
-    login(email.value, password.value, history);
+    loginWithEmail(email.value, password.value, history);
+  };
+
+  const handleSubmitWithGoogle = (event: any) => {
+    event.preventDefault();
+    loginWithGoogle();
   };
 
   return (
@@ -34,6 +39,9 @@ const Login = ({ history }: { history: H.History }) => {
           <input name="password" type="password" placeholder="PassWord" />
         </label>
         <button type="submit">ログイン</button>
+      </form>
+      <form onSubmit={handleSubmitWithGoogle}>
+        <button type="submit">Google ログイン</button>
       </form>
     </div>
   );
