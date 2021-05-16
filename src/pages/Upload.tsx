@@ -27,7 +27,6 @@ const Upload = (): JSX.Element => {
       <div>
         <PreviewRender preview={preview} />
       </div>{' '}
-      <a href="/">ホーム画面へ</a>
     </>
   );
 };

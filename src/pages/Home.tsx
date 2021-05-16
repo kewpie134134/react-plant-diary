@@ -13,7 +13,6 @@ const Home = (): JSX.Element => {
       <h1>🌻 ひまわり図鑑 🌻</h1>
       {/* ユーザーをログアウトさせる */}
       <button onClick={logOut}>サインアウト</button>
-      <a href="/upload">アップロード画面へ</a>
       <ShowStoredImages />
     </>
   );
