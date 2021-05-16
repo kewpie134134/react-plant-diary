@@ -29,7 +29,7 @@ const Login = (): JSX.Element => {
       <form onSubmit={handleSubmit}>
         <label>
           Email
-          <input name="email" type="email" placeholder="email" />
+          <input name="email" type="email" placeholder="Email" />
         </label>
         <label>
           PassWord
