@@ -5,7 +5,6 @@ import * as H from 'history';
 import { AuthContext } from '../auth/AuthProvider';
 
 const Login = ({ history }: { history: H.History }) => {
-  // ★ historyとは？？？？
   // AuthContext から login 関数を受け取る
   const { login } = useContext(AuthContext);
 
