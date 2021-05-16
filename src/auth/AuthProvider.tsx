@@ -5,6 +5,7 @@
 
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import * as H from 'history';
+import firebase from 'firebase/app';
 
 import { auth } from '../firebase/Firebase';
 
@@ -26,7 +27,7 @@ export const AuthProvider = ({
   children: ReactNode;
 }): JSX.Element => {
   // ログインユーザーを格納しておく変数を作成
-  const [currentUser, setCurrentUser] = useState<any | null>(null);
+  const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
 
   // ユーザーをログインさせる関数
   const login = async (email: string, password: string, history: H.History) => {
@@ -39,7 +40,7 @@ export const AuthProvider = ({
   };
 
   useEffect(() => {
-    auth.onAuthStateChanged(setCurrentUser);
+    auth.onAuthStateChanged((currentUser) => setCurrentUser(currentUser));
   }, []);
 
   return (
