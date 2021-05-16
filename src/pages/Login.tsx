@@ -15,7 +15,7 @@ const Login = (): JSX.Element => {
     // email と password の内容を取得
     const { email, password } = event.target.elements;
     // AuthProvider の login 関数を使用
-    login ? login(email, password) : null;
+    login ? login(email.value, password.value) : null;
   };
 
   return (
