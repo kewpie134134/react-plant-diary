@@ -3,7 +3,7 @@ import React from 'react';
 const Header: React.FC = (): JSX.Element => {
   return (
     <>
-      <p>HEADER!</p>
+      <header>HEADER!</header>
     </>
   );
 };
