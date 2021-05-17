@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Box from '@material-ui/core/Box';
 
 import { AuthProvider } from './auth/AuthProvider';
 import PrivateRoute from './auth/PrivateRoute';
@@ -20,7 +21,9 @@ const App = (): JSX.Element => {
           <Route exact path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
-      <Footer />
+      <Box mt={8}>
+        <Footer />
+      </Box>
     </AuthProvider>
   );
 };
