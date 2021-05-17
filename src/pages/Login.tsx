@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Button from '@material-ui/core/Button';
 
 import { AuthContext } from '../auth/AuthProvider';
 
@@ -22,15 +23,20 @@ const Login = (): JSX.Element => {
     <div>
       <h1>ログイン</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          PassWord
-          <input name="password" type="password" placeholder="PassWord" />
-        </label>
-        <button type="submit">ログイン</button>
+        <div>
+          <label>
+            Email: <input name="email" type="email" placeholder="Email" />
+          </label>
+        </div>
+        <div>
+          <label>
+            PassWord:{' '}
+            <input name="password" type="password" placeholder="PassWord" />
+          </label>
+        </div>
+        <Button color="primary" variant="contained" type="submit">
+          ログイン
+        </Button>
       </form>
     </div>
   );
