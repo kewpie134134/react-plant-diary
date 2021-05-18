@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Header from '../components/Header';
 import PreviewRender from '../components/PreviewRender';
 
 const Upload = (): JSX.Element => {
@@ -14,6 +15,7 @@ const Upload = (): JSX.Element => {
   };
   return (
     <>
+      <Header />
       <h1>画像をアップロードする</h1>
       <div>
         <input
