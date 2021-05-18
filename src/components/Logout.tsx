@@ -2,7 +2,7 @@ import React from 'react';
 
 import { auth } from '../firebase/Firebase';
 
-const Logout = () => {
+const Logout = (): JSX.Element => {
   const logOut = () => {
     auth.signOut();
   };
