@@ -8,7 +8,7 @@ const Footer: React.FC = (): JSX.Element => {
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" href="https://plant-diary-prj.web.app/">
-          🌻 ひまわり図鑑 🌻
+          🌻 ひまわり日記 🌻
         </Link>
         {new Date().getFullYear()}
       </Typography>

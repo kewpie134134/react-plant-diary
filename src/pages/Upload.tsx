@@ -15,7 +15,7 @@ const Upload = (): JSX.Element => {
   };
   return (
     <>
-      <Header />
+      <Header pageName="アップロード" />
       <h1>画像をアップロードする</h1>
       <div>
         <input

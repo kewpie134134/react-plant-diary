@@ -1,20 +1,37 @@
 import React from 'react';
+import { Container, Typography } from '@material-ui/core';
 
-import { auth } from '../firebase/Firebase';
+import { useHomeStyles } from '../styles/HomeStyles';
 import Header from '../components/Header';
 import ShowStoredImages from '../components/ShowStoredImages';
 
 const Home = (): JSX.Element => {
-  const logOut = () => {
-    auth.signOut();
-  };
+  const classes = useHomeStyles();
   return (
     <>
-      <Header />
-      <h1>🌻 ひまわり図鑑 🌻</h1>
-      {/* ユーザーをログアウトさせる */}
-      <button onClick={logOut}>サインアウト</button>
-      <ShowStoredImages />
+      <Header pageName="ホーム" />
+      <main>
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom>
+              🌻 ひまわり日記 🌻
+            </Typography>
+            <Typography
+              variant="h5"
+              align="center"
+              color="textSecondary"
+              paragraph>
+              日々成長するにひまわりをご覧ください！
+            </Typography>
+          </Container>
+        </div>
+        <ShowStoredImages />
+      </main>
     </>
   );
 };
