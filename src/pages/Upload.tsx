@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core';
+import { Button, Container, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 
 import Header from '../components/Header';
@@ -39,15 +39,22 @@ const Upload = (): JSX.Element => {
               paragraph>
               毎朝のひまわりの写真を登録してね！
             </Typography>
-            <h1>画像をップロードする</h1>
-            <div>
+            <div className={classes.root}>
               <input
-                type="file"
                 accept="image/jpeg, image/png"
+                className={classes.input}
+                id="contained-button-file"
+                multiple
+                type="file"
                 onChange={(event) => {
                   handleChangeFile(event);
                 }}
               />
+              <label htmlFor="contained-button-file">
+                <Button variant="contained" color="primary" component="span">
+                  画像を選択
+                </Button>
+              </label>
             </div>
           </Container>
         </div>
