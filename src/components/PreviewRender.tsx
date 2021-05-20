@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import { db, storage } from '../firebase/Firebase';
 import CalendarDatePicker from '../components/CalendarDatePicker';
+import { Button } from '@material-ui/core';
 
 type PreviewProps = {
   preview: string;
@@ -59,7 +60,9 @@ const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
         />
       </div>
       <div>
-        <button onClick={onUploadImage}>アップロード</button>
+        <Button variant="contained" color="primary" onClick={onUploadImage}>
+          アップロード
+        </Button>
       </div>
     </>
   );

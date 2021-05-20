@@ -5,6 +5,7 @@ import ja from 'date-fns/locale/ja';
 import moment from 'moment';
 
 import { parseAsMoment } from '../components/DatePickerFunctions';
+import { Button } from '@material-ui/core';
 
 // PreviewRender.tsx から送られてくる引数の型宣言
 type CalendarDatePickerProps = {
@@ -31,7 +32,9 @@ const CalendarDatePicker = ({
         selected={moment(calendarDate).toDate()}
         onChange={handleChange}
         customInput={
-          <button>{parseAsMoment(calendarDate).format('YYYY/MM/DD')}</button>
+          <Button variant="contained" color="secondary">
+            {parseAsMoment(calendarDate).format('YYYY/MM/DD')}
+          </Button>
         }
       />
     </Fragment>
