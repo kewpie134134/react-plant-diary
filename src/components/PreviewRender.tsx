@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import { Box, Button } from '@material-ui/core';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 import { db, storage } from '../firebase/Firebase';
 import CalendarDatePicker from '../components/CalendarDatePicker';
-import { Box, Button } from '@material-ui/core';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { usePreviewRenderStyles } from '../styles/PreviewRenderStyles';
 
 type PreviewProps = {
