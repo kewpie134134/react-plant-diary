@@ -7,4 +7,7 @@ export const usePreviewRenderStyles = makeStyles(() => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
+  uploadButton: {
+    textAlign: 'right',
+  },
 }));

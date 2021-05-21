@@ -37,7 +37,7 @@ const CalendarDatePicker = ({
             variant="contained"
             color="secondary"
             startIcon={<TodayIcon />}>
-            {`日付：${parseAsMoment(calendarDate).format('YYYY年 MM月DD日')}`}
+            {parseAsMoment(calendarDate).format('YYYY年 MM月DD日')}
           </Button>
         }
       />

@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import { db, storage } from '../firebase/Firebase';
 import CalendarDatePicker from '../components/CalendarDatePicker';
-import { Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { usePreviewRenderStyles } from '../styles/PreviewRenderStyles';
 
@@ -62,20 +62,24 @@ const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
         src={Object.values(preview)[0]}
         alt="preview"
       />
-      <div>
-        <CalendarDatePicker
-          calendarDate={calendarDate}
-          setCalendarDate={setCalendarDate}
-        />
-      </div>
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={onUploadImage}
-          startIcon={<CloudUploadIcon />}>
-          アップロード
-        </Button>
+      <div style={{ width: '100%' }}>
+        <Box display="flex" p={1}>
+          <Box flexGrow={1}>
+            <CalendarDatePicker
+              calendarDate={calendarDate}
+              setCalendarDate={setCalendarDate}
+            />
+          </Box>
+          <Box>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={onUploadImage}
+              startIcon={<CloudUploadIcon />}>
+              アップロード
+            </Button>
+          </Box>
+        </Box>
       </div>
     </>
   );
