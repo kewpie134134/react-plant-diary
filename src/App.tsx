@@ -19,7 +19,7 @@ const App = (): JSX.Element => {
           <Route exact path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
-      <Box mt={8}>
+      <Box mt={2}>
         <Footer />
       </Box>
     </AuthProvider>
