@@ -5,6 +5,7 @@ import { db, storage } from '../firebase/Firebase';
 import CalendarDatePicker from '../components/CalendarDatePicker';
 import { Button } from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { usePreviewRenderStyles } from '../styles/PreviewRenderStyles';
 
 type PreviewProps = {
   preview: string;
@@ -14,6 +15,9 @@ type PreviewProps = {
 const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
   // ファイル登録用の日付を格納
   const [calendarDate, setCalendarDate] = useState<string>(moment().format());
+
+  // Material-UI の準備
+  const classes = usePreviewRenderStyles();
 
   // ファイルが選択されているか確認
   if (Object.values(preview)[0] === '') return null;
@@ -53,7 +57,11 @@ const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
 
   return (
     <>
-      <img src={Object.values(preview)[0]} alt="preview" />
+      <img
+        className={classes.image}
+        src={Object.values(preview)[0]}
+        alt="preview"
+      />
       <div>
         <CalendarDatePicker
           calendarDate={calendarDate}
