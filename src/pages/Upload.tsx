@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Typography } from '@material-ui/core';
 
 import Header from '../components/Header';
 import SelectImage from '../components/SelectImage';
 import { useUploadStyles } from '../styles/UploadStyles';
+import PreviewRender from '../components/PreviewRender';
 
 const Upload = (): JSX.Element => {
   // Material-UI の準備
   const classes = useUploadStyles();
+  // 選択された画像データを保持しておく State
+  const [preview, setPreview] = useState<string>('');
 
   return (
     <>
@@ -30,7 +33,8 @@ const Upload = (): JSX.Element => {
               paragraph>
               毎朝のひまわりの写真を登録してね！
             </Typography>
-            <SelectImage />
+            <SelectImage setPreview={setPreview} />
+            <PreviewRender preview={preview} />
           </Container>
         </div>
       </main>
