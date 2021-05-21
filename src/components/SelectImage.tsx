@@ -35,6 +35,7 @@ const SelectImage = (): JSX.Element => {
           </Button>
         </label>
       </div>
+      <br />
       <div>
         <PreviewRender preview={preview} />
       </div>
