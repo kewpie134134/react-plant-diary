@@ -3,6 +3,8 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ja from 'date-fns/locale/ja';
 import moment from 'moment';
+import { Button } from '@material-ui/core';
+import TodayIcon from '@material-ui/icons/Today';
 
 import { parseAsMoment } from '../components/DatePickerFunctions';
 
@@ -31,7 +33,12 @@ const CalendarDatePicker = ({
         selected={moment(calendarDate).toDate()}
         onChange={handleChange}
         customInput={
-          <button>{parseAsMoment(calendarDate).format('YYYY/MM/DD')}</button>
+          <Button
+            variant="contained"
+            color="secondary"
+            startIcon={<TodayIcon />}>
+            {parseAsMoment(calendarDate).format('YYYY年 MM月DD日')}
+          </Button>
         }
       />
     </Fragment>

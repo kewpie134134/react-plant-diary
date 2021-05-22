@@ -1,32 +1,43 @@
 import React, { useState } from 'react';
+import { Container, Typography } from '@material-ui/core';
 
+import Header from '../components/Header';
+import SelectImage from '../components/SelectImage';
+import { useUploadStyles } from '../styles/UploadStyles';
 import PreviewRender from '../components/PreviewRender';
 
 const Upload = (): JSX.Element => {
+  // Material-UI の準備
+  const classes = useUploadStyles();
   // 選択された画像データを保持しておく State
   const [preview, setPreview] = useState<string>('');
 
-  const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
-    if (files) {
-      setPreview(window.URL.createObjectURL(files[0]));
-    }
-  };
   return (
     <>
-      <h1>画像をアップロードする</h1>
-      <div>
-        <input
-          type="file"
-          accept="image/jpeg, image/png"
-          onChange={(event) => {
-            handleChangeFile(event);
-          }}
-        />
-      </div>
-      <div>
-        <PreviewRender preview={preview} />
-      </div>{' '}
+      <Header pageName="アップロード" />
+      <main>
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom>
+              🌻 画像を登録 🌻
+            </Typography>
+            <Typography
+              variant="h5"
+              align="center"
+              color="textSecondary"
+              paragraph>
+              毎朝のひまわりの写真を登録してね！
+            </Typography>
+            <SelectImage setPreview={setPreview} />
+            <PreviewRender preview={preview} />
+          </Container>
+        </div>
+      </main>
     </>
   );
 };
