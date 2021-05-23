@@ -17,7 +17,7 @@ const App = (): JSX.Element => {
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/upload" component={Upload} />
-          <PrivateRoute exact path="/image/:id" component={Image} />
+          <PrivateRoute exact path="/image/:date" component={Image} />
           <Route exact path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
