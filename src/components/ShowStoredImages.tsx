@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -9,6 +10,7 @@ import {
   Grid,
   Typography,
 } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
 
 import { db } from '../firebase/Firebase';
 import { useShowStoredImagesStyles } from '../styles/ShowStoredImagesStyles';
@@ -61,11 +63,8 @@ const ShowStoredImages = (): JSX.Element => {
                   <Typography>今日はまた一段と成長しました。</Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary">
-                    View
-                  </Button>
-                  <Button size="small" color="primary">
-                    Edit
+                  <Button size="small" color="primary" startIcon={<EditIcon />}>
+                    <Link to={`/image/${imageUrl.date}`}>編集</Link>
                   </Button>
                 </CardActions>
               </Card>
