@@ -1,13 +1,15 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import Header from '../components/Header';
 
 const Image = (): JSX.Element => {
+  // '/image/2021-01-01' が location.pathname に格納されているので、
+  // split を使用して 2 つめの '/' 以降の日付情報を取得する。
+  const storedImageDate = location.pathname.split('/')[2];
   try {
     const location = useLocation<{ downloadUrl: string }>();
     console.log(location.state.downloadUrl);
-    console.log(location.pathname);
   } catch (e) {
     // downloadUrl が取得できない場合に起こりうる。
     // 1. firestore 上に画像が登録されていたらそれを取ってくる
@@ -19,7 +21,7 @@ const Image = (): JSX.Element => {
   return (
     <>
       <Header pageName="画像編集" />
-      <div>{location.pathname}画像編集ページ</div>
+      <div>{storedImageDate}画像編集ページ</div>
     </>
   );
 };
