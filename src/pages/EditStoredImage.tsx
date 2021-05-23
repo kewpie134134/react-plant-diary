@@ -9,12 +9,15 @@ const EditStoredImage = (): JSX.Element => {
   // ホーム画面上に表示されている、DB に格納されていた画像を格納するためのインスタンス
   // ここでの storedImage には firestore に格納されている 'http://~~~' の文字列が入る。
   const [storedImage, setStoredImage] = useState<string>('');
-  useEffect(() => {
-    setStoredImage(location.state.downloadUrl);
-  }, []);
 
   // Link to で指定されたオブジェクト情報を取得する
   const location = useLocation<{ downloadUrl: string }>();
+
+  // storedImage に Firebase に登録されている画像データ情報をセットする
+  useEffect(() => {
+    setStoredImage(location.state.downloadUrl);
+  }, [location.state.downloadUrl]);
+
   // '/image/2021-01-01' が location.pathname に格納されているので、
   // split('/') を使用して 2 つめの '/' 以降の日付情報を取得する。
   const storedImageDate = location.pathname.split('/')[2];
