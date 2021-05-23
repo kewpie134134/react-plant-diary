@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Typography } from '@material-ui/core';
 
 import { useHomeStyles } from '../styles/HomeStyles';
@@ -11,6 +12,7 @@ const Home = (): JSX.Element => {
     <>
       <Header pageName="ホーム" />
       <main>
+        <Link to="/image/test">画像ページ</Link>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography
