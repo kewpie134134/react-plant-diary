@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -63,9 +62,10 @@ const ShowStoredImages = (): JSX.Element => {
                   <Typography>今日はまた一段と成長しました。</Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary" startIcon={<EditIcon />}>
-                    <Link to={`/image/${imageUrl.date}`}>編集</Link>
-                  </Button>
+                  <Link to={`/image/${imageUrl.date}`}>
+                    <EditIcon fontSize="small" />
+                    編集
+                  </Link>
                 </CardActions>
               </Card>
             </Grid>
