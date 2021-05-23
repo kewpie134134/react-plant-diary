@@ -62,7 +62,11 @@ const ShowStoredImages = (): JSX.Element => {
                   <Typography>今日はまた一段と成長しました。</Typography>
                 </CardContent>
                 <CardActions>
-                  <Link to={`/image/${imageUrl.date}`}>
+                  <Link
+                    to={{
+                      pathname: `/image/${imageUrl.date}`,
+                      state: { downloadUrl: imageUrl.downloadUrl },
+                    }}>
                     <EditIcon fontSize="small" />
                     編集
                   </Link>
