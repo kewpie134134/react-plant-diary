@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import { AuthProvider } from './auth/AuthProvider';
 import PrivateRoute from './auth/PrivateRoute';
 import Home from './pages/Home';
-import Image from './pages/Image';
+import Image from './pages/EditStoredImage';
 import Upload from './pages/Upload';
 import Login from './pages/Login';
 import Footer from './components/Footer';
