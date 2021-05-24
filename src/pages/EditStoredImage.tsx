@@ -26,7 +26,7 @@ const EditStoredImage = (): JSX.Element => {
     propsImageData = location.state.downloadUrl;
   } catch (error) {
     console.log(
-      `正常ルート（ホーム画面）から呼び出されなかったため、downloadUrl が undefined となります：${error.message}`
+      '正常ルート（ホーム画面）から呼び出されなかったため、downloadUrl が undefined となります'
     );
     propsImageData = '';
   }
