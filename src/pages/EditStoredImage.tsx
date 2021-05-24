@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import moment from 'moment';
 
 import { db } from '../firebase/Firebase';
 import NoImageJpg from '../images/no_image.jpg';
@@ -11,6 +12,9 @@ const EditStoredImage = (): JSX.Element => {
   // ホーム画面上に表示されている、DB に格納されていた画像を格納するためのインスタンス
   // ここでの storedImage には firestore に格納されている 'http://~~~' の文字列が入る。
   const [storedImage, setStoredImage] = useState<string>('');
+
+  // ファイル登録用の日付を格納
+  const [calendarDate, setCalendarDate] = useState<string>(moment().format());
 
   // props として送られてくる画像情報を一時的に保持しておく
   let propsImageData: string;
@@ -64,7 +68,11 @@ const EditStoredImage = (): JSX.Element => {
     <>
       <Header pageName="画像編集" />
       <SelectImage setPreview={setStoredImage} />
-      <PreviewRender preview={storedImage} />
+      <PreviewRender
+        preview={storedImage}
+        calendarDate={calendarDate}
+        setCalendarDate={setCalendarDate}
+      />
     </>
   );
 };
