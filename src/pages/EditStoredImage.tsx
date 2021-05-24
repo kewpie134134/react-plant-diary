@@ -34,7 +34,7 @@ const EditStoredImage = (): JSX.Element => {
   // storedImage に Firebase に画像データ情報をセットする
   useEffect(() => {
     setStoredImage(propsImageData);
-  }, []);
+  }, [propsImageData]);
 
   // propsImageData に値が入っていない場合
   if (!propsImageData) {
@@ -65,7 +65,6 @@ const EditStoredImage = (): JSX.Element => {
       <Header pageName="画像編集" />
       <SelectImage setPreview={setStoredImage} />
       <PreviewRender preview={storedImage} />
-      <img src={propsImageData}></img>
     </>
   );
 };
