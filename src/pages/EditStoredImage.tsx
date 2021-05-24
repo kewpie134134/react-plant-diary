@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { db } from '../firebase/Firebase';
 import NoImageJpg from '../images/no_image.jpg';
+import { validDate } from '../components/DateCheck';
 import Header from '../components/Header';
 import SelectImage from '../components/SelectImage';
 import PreviewRender from '../components/PreviewRender';
@@ -26,6 +27,7 @@ const EditStoredImage = (): JSX.Element => {
   // split('/') を使用して 2 つめの '/' 以降の日付情報を取得する。
   const storedImageDate = location.pathname.split('/')[2];
 
+  // Link to のオブジェクトに画像ダウンロード URL が記載されているか確認
   try {
     propsImageData = location.state.downloadUrl;
   } catch (error) {
@@ -40,13 +42,13 @@ const EditStoredImage = (): JSX.Element => {
     setStoredImage(propsImageData);
   }, [propsImageData]);
 
-  // propsImageData に値が入っていない場合
-  if (!propsImageData) {
+  // propsImageData に値が入っていない、かつ日付情報が正しい場合
+  if (!propsImageData && validDate(storedImageDate)) {
     console.log('FireStore から画像を取得します。');
     // 日付情報を頼りに画像の downloadUri を取得する
     const docRef = db.collection('images').doc(storedImageDate).get();
     docRef.then((doc) => {
-      if (!doc.exists) {
+      if (!doc.exists || !doc.data()) {
         // FireStore 上に画像データがない場合は 404 画像を返す。
         console.log(
           'FireStore 上で日付情報から画像データを取得できませんでした。'
