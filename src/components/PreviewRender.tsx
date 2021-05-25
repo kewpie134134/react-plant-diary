@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import moment from 'moment';
+import React from 'react';
 import Box from '@material-ui/core/Box';
 
 import CalendarDatePicker from '../components/CalendarDatePicker';
@@ -8,26 +7,25 @@ import UploadImage from './UploadImage';
 
 type PreviewProps = {
   preview: string;
+  calendarDate: string;
+  setCalendarDate: React.Dispatch<React.SetStateAction<string>>;
 };
 
 // 選択した画像を表示させるためのプレビュー用コンポーネント
-const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
-  // ファイル登録用の日付を格納
-  const [calendarDate, setCalendarDate] = useState<string>(moment().format());
-
+const PreviewRender = ({
+  preview,
+  calendarDate,
+  setCalendarDate,
+}: PreviewProps): JSX.Element | null => {
   // Material-UI の準備
   const classes = usePreviewRenderStyles();
 
   // ファイルが選択されているか確認
-  if (Object.values(preview)[0] === '') return null;
+  if (!preview) return null;
 
   return (
     <>
-      <img
-        className={classes.image}
-        src={Object.values(preview)[0]}
-        alt="preview"
-      />
+      <img className={classes.image} src={preview} alt="preview" />
       <div style={{ width: '100%' }}>
         <Box display="flex" p={1}>
           {/* 日付選択ボタン */}
@@ -39,10 +37,7 @@ const PreviewRender = (preview: PreviewProps): JSX.Element | null => {
           </Box>
           {/* 画像アップロードボタン */}
           <Box>
-            <UploadImage
-              dataUri={Object.values(preview)[0]}
-              calendarDate={calendarDate}
-            />
+            <UploadImage dataUri={preview} calendarDate={calendarDate} />
           </Box>
         </Box>
       </div>

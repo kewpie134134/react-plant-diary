@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import { Container, Typography } from '@material-ui/core';
 
 import Header from '../components/Header';
@@ -11,6 +12,8 @@ const Upload = (): JSX.Element => {
   const classes = useUploadStyles();
   // 選択された画像データを保持しておく State
   const [preview, setPreview] = useState<string>('');
+  // ファイル登録用の日付を格納
+  const [calendarDate, setCalendarDate] = useState<string>(moment().format());
 
   return (
     <>
@@ -34,7 +37,11 @@ const Upload = (): JSX.Element => {
               毎朝のひまわりの写真を登録してね！
             </Typography>
             <SelectImage setPreview={setPreview} />
-            <PreviewRender preview={preview} />
+            <PreviewRender
+              preview={preview}
+              calendarDate={calendarDate}
+              setCalendarDate={setCalendarDate}
+            />
           </Container>
         </div>
       </main>

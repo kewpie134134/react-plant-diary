@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import { AuthProvider } from './auth/AuthProvider';
 import PrivateRoute from './auth/PrivateRoute';
 import Home from './pages/Home';
+import Image from './pages/EditStoredImage';
 import Upload from './pages/Upload';
 import Login from './pages/Login';
 import Footer from './components/Footer';
@@ -16,6 +17,7 @@ const App = (): JSX.Element => {
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/upload" component={Upload} />
+          <PrivateRoute exact path="/image/:date" component={Image} />
           <Route exact path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
