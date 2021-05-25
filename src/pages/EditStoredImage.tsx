@@ -81,8 +81,6 @@ const EditStoredImage = (): JSX.Element => {
     errorFlag = true;
   }
 
-  // 日付情報が正しくない場合
-  // 日付情報が正しい場合
   return (
     <>
       <Header pageName="画像編集" />
