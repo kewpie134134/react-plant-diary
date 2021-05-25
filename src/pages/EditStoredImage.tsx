@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Container, Typography } from '@material-ui/core';
 import moment from 'moment';
 
+import { useEditStoredImageStyles } from '../styles/EditStoredImageStyles';
 import { db } from '../firebase/Firebase';
 import NoImageJpg from '../images/no_image.jpg';
 import { validDate } from '../components/DateCheck';
@@ -10,6 +12,9 @@ import SelectImage from '../components/SelectImage';
 import PreviewRender from '../components/PreviewRender';
 
 const EditStoredImage = (): JSX.Element => {
+  // Material-UI の準備
+  const classes = useEditStoredImageStyles();
+
   // ホーム画面上に表示されている、DB に格納されていた画像を格納するためのインスタンス
   // ここでの storedImage には firestore に格納されている 'http://~~~' の文字列が入る。
   const [storedImage, setStoredImage] = useState<string>('');
@@ -77,33 +82,48 @@ const EditStoredImage = (): JSX.Element => {
     errorFlag = true;
   }
 
-  if (errorFlag) {
-    // 日付情報が正しくない場合
-    return (
-      <>
-        <Header pageName="画像編集" />
-        <SelectImage setPreview={setStoredImage} />
-        <PreviewRender
-          preview={NoImageJpg}
-          calendarDate={calendarDate}
-          setCalendarDate={setCalendarDate}
-        />
-      </>
-    );
-  } else {
-    // 日付情報が正しい場合
-    return (
-      <>
-        <Header pageName="画像編集" />
-        <SelectImage setPreview={setStoredImage} />
-        <PreviewRender
-          preview={storedImage}
-          calendarDate={storedImageDate}
-          setCalendarDate={setCalendarDate}
-        />
-      </>
-    );
-  }
+  // 日付情報が正しくない場合
+  // 日付情報が正しい場合
+  return (
+    <>
+      <Header pageName="画像編集" />
+      <main>
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom>
+              🌻 画像を編集 🌻
+            </Typography>
+            <Typography
+              variant="h5"
+              align="center"
+              color="textSecondary"
+              paragraph>
+              毎朝のひまわりの写真を登録してね！
+            </Typography>
+            <SelectImage setPreview={setStoredImage} />
+            {errorFlag ? (
+              <PreviewRender
+                preview={NoImageJpg}
+                calendarDate={calendarDate}
+                setCalendarDate={setCalendarDate}
+              />
+            ) : (
+              <PreviewRender
+                preview={storedImage}
+                calendarDate={storedImageDate}
+                setCalendarDate={setCalendarDate}
+              />
+            )}
+          </Container>
+        </div>
+      </main>
+    </>
+  );
 };
 
 export default EditStoredImage;
