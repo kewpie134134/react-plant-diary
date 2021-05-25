@@ -70,8 +70,7 @@ const EditStoredImage = (): JSX.Element => {
           console.log(
             'FireStore 上に日付に合致する画像があったので、表示します。'
           );
-          propsImageData = doc?.data()?.downloadUrl;
-          setStoredImage(propsImageData);
+          setStoredImage(doc?.data()?.downloadUrl);
         }
       });
     }
