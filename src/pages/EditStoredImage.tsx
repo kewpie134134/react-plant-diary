@@ -73,7 +73,6 @@ const EditStoredImage = (): JSX.Element => {
     console.log('日付情報が正しくないので、画像を表示できませんでした。');
     // エラーフラグを立てる
     errorFlag = true;
-    console.log(errorFlag);
   }
   if (errorFlag) {
     return (
