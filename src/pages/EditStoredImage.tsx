@@ -45,8 +45,9 @@ const EditStoredImage = (): JSX.Element => {
     setStoredImage(propsImageData);
   }, [propsImageData]);
 
+  // 日付情報が正しく入力されている場合
   if (validDate(storedImageDate)) {
-    // propsImageData に値が入っていない、かつ日付情報が正しい場合
+    // propsImageData に値が入っていない場合
     if (!propsImageData) {
       console.log('FireStore から画像を取得します。');
       // 日付情報を頼りに画像の downloadUri を取得する
@@ -70,11 +71,14 @@ const EditStoredImage = (): JSX.Element => {
       });
     }
   } else {
+    // 日付情報が正しく入力されていない場合
     console.log('日付情報が正しくないので、画像を表示できませんでした。');
     // エラーフラグを立てる
     errorFlag = true;
   }
+
   if (errorFlag) {
+    // 日付情報が正しくない場合
     return (
       <>
         <Header pageName="画像編集" />
@@ -87,13 +91,14 @@ const EditStoredImage = (): JSX.Element => {
       </>
     );
   } else {
+    // 日付情報が正しい場合
     return (
       <>
         <Header pageName="画像編集" />
         <SelectImage setPreview={setStoredImage} />
         <PreviewRender
           preview={storedImage}
-          calendarDate={calendarDate}
+          calendarDate={storedImageDate}
           setCalendarDate={setCalendarDate}
         />
       </>
