@@ -17,6 +17,9 @@ const EditStoredImage = (): JSX.Element => {
   // ファイル登録用の日付を格納
   const [calendarDate, setCalendarDate] = useState<string>(moment().format());
 
+  // エラーフラグ
+  let errorFlag;
+
   // props として送られてくる画像情報を一時的に保持しておく
   let propsImageData: string;
 
@@ -42,41 +45,61 @@ const EditStoredImage = (): JSX.Element => {
     setStoredImage(propsImageData);
   }, [propsImageData]);
 
-  // propsImageData に値が入っていない、かつ日付情報が正しい場合
-  if (!propsImageData && validDate(storedImageDate)) {
-    console.log('FireStore から画像を取得します。');
-    // 日付情報を頼りに画像の downloadUri を取得する
-    const docRef = db.collection('images').doc(storedImageDate).get();
-    docRef.then((doc) => {
-      if (!doc.exists || !doc.data()) {
-        // FireStore 上に画像データがない場合は 404 画像を返す。
-        console.log(
-          'FireStore 上で日付情報から画像データを取得できませんでした。'
-        );
-        setStoredImage(NoImageJpg);
-        return;
-      } else {
-        // FireStore 上に画像データがある場合は取得する。
-        console.log(
-          'FireStore 上に日付に合致する画像があったので、表示します。'
-        );
-        propsImageData = doc?.data()?.downloadUrl;
-        setStoredImage(propsImageData);
-      }
-    });
+  if (validDate(storedImageDate)) {
+    // propsImageData に値が入っていない、かつ日付情報が正しい場合
+    if (!propsImageData) {
+      console.log('FireStore から画像を取得します。');
+      // 日付情報を頼りに画像の downloadUri を取得する
+      const docRef = db.collection('images').doc(storedImageDate).get();
+      docRef.then((doc) => {
+        if (!doc.exists || !doc.data()) {
+          // FireStore 上に画像データがない場合は 404 画像を返す。
+          console.log(
+            'FireStore 上で日付情報から画像データを取得できませんでした。'
+          );
+          setStoredImage(NoImageJpg);
+          return;
+        } else {
+          // FireStore 上に画像データがある場合は取得する。
+          console.log(
+            'FireStore 上に日付に合致する画像があったので、表示します。'
+          );
+          propsImageData = doc?.data()?.downloadUrl;
+          setStoredImage(propsImageData);
+        }
+      });
+    }
+  } else {
+    console.log('日付情報が正しくないので、画像を表示できませんでした。');
+    // エラーフラグを立てる
+    errorFlag = true;
+    console.log(errorFlag);
   }
-
-  return (
-    <>
-      <Header pageName="画像編集" />
-      <SelectImage setPreview={setStoredImage} />
-      <PreviewRender
-        preview={storedImage}
-        calendarDate={calendarDate}
-        setCalendarDate={setCalendarDate}
-      />
-    </>
-  );
+  if (errorFlag) {
+    return (
+      <>
+        <Header pageName="画像編集" />
+        <SelectImage setPreview={setStoredImage} />
+        <PreviewRender
+          preview={NoImageJpg}
+          calendarDate={calendarDate}
+          setCalendarDate={setCalendarDate}
+        />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Header pageName="画像編集" />
+        <SelectImage setPreview={setStoredImage} />
+        <PreviewRender
+          preview={storedImage}
+          calendarDate={calendarDate}
+          setCalendarDate={setCalendarDate}
+        />
+      </>
+    );
+  }
 };
 
 export default EditStoredImage;
