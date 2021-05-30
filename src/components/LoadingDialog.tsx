@@ -7,18 +7,23 @@ interface Props {
   isOpen: boolean;
   /** このダイアログを閉じるときのコールバック */
   onClose?: () => void;
-  /** 画像のアップロードが完了したかのフラグ */
-  hasUploaded: boolean;
+  /** 処理が完了したかのフラグ */
+  hasProcessed?: boolean;
+  /** ローディング中のメッセージ */
+  loadingMessage: string;
+  /** ローディング完了時のメッセージ */
+  loadedMessage?: string;
 }
 
-const UploadingDialog = ({
+const LoadingDialog = ({
   isOpen,
   onClose,
-  hasUploaded,
+  hasProcessed,
+  loadingMessage,
+  loadedMessage = '',
 }: Props): JSX.Element => {
   // ダイアログに表示するメッセージを保持するためのステート
-  const [dialogMessage, setDialogMessage] =
-    useState<string>('画像アップロード中...');
+  const [dialogMessage, setDialogMessage] = useState<string>(loadingMessage);
 
   // 具体的に #root 要素などを指定したほうがよい？
   ReactModal.setAppElement('body');
@@ -36,10 +41,10 @@ const UploadingDialog = ({
 
   useEffect(() => {
     // 画像アップロード状態ごとによるメッセージ
-    hasUploaded
-      ? setDialogMessage('画像をアップロードしました！')
-      : setDialogMessage('画像アップロード中...');
-  }, [hasUploaded]);
+    hasProcessed
+      ? setDialogMessage(loadedMessage)
+      : setDialogMessage(loadingMessage);
+  }, [hasProcessed, loadingMessage, loadedMessage]);
 
   // スタイルのカスタマイズ
   const customStyles: ReactModal.Styles = {
@@ -65,7 +70,7 @@ const UploadingDialog = ({
       onRequestClose={handleClose}
       style={customStyles}
       contentLabel="Settings">
-      {hasUploaded ? null : (
+      {hasProcessed ? null : (
         <ReactLoading type="spin" color="#0000ff" height={32} width={32} />
       )}
       {dialogMessage}
@@ -73,4 +78,4 @@ const UploadingDialog = ({
   );
 };
 
-export default UploadingDialog;
+export default LoadingDialog;

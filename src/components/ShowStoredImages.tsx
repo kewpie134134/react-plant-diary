@@ -13,6 +13,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { db } from '../firebase/Firebase';
 import { useShowStoredImagesStyles } from '../styles/ShowStoredImagesStyles';
+import LoadingDialog from './LoadingDialog';
 
 type ImageUrlsProps = {
   date: string;
@@ -23,25 +24,37 @@ const ShowStoredImages = (): JSX.Element => {
   // Material-UI 用のスタイルを生成
   const classes = useShowStoredImagesStyles();
 
+  // ダイアログの状態を保持するステート
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(true);
+  // ダイアログからのコールバックでダイアログを閉じる
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+  };
+  const LOADING_MESSAGE = '画像取得中...';
+
   // Firestore から取得した FireStrage 上の画像ダウンロード URL を非同期で格納する箱を作成
   const [imageUrls, setImageUrls] = useState<ImageUrlsProps[]>([]);
   // DOM 読み込み時に一回だけ imageUrls[] に、
   // FireStorage に格納されている画像の downloadUrl 情報を格納する。
   useEffect(() => {
     // FireStore 上の ドキュメント[images] 配下にあるデータを取得する
-    const docRef = db.collection('images').get();
+    const docRef = db.collection('images').orderBy('date', 'desc').get();
     // 取得したデータを imageUrls[] に格納する
-    docRef.then((snapshot) => {
-      snapshot.forEach((doc) => {
-        setImageUrls((imageUrls) => [
-          ...imageUrls,
-          {
-            date: doc.id,
-            downloadUrl: doc.data().downloadUrl,
-          },
-        ]);
+    docRef
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          setImageUrls((imageUrls) => [
+            ...imageUrls,
+            {
+              date: doc.id,
+              downloadUrl: doc.data().downloadUrl,
+            },
+          ]);
+        });
+      })
+      .then(() => {
+        setIsDialogOpen(false);
       });
-    });
   }, []);
   return (
     <>
@@ -76,6 +89,11 @@ const ShowStoredImages = (): JSX.Element => {
           ))}
         </Grid>
       </Container>
+      <LoadingDialog
+        isOpen={isDialogOpen}
+        onClose={closeDialog}
+        loadingMessage={LOADING_MESSAGE}
+      />
     </>
   );
 };

@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 import { db, storage } from '../firebase/Firebase';
-import UploadingDialog from './UploadingDialog';
+import LoadingDialog from './LoadingDialog';
 
 type UploadImageType = {
   dataUri: string;
@@ -18,6 +18,8 @@ const UploadImage = ({
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   // 画像アップロード完了フラグ
   const [hasUploaded, setHasUploaded] = useState<boolean>(false);
+  const LOADING_MESSAGE = '画像アップロード中...';
+  const LOADED_MESSAGE = '画像をアップロードしました！';
 
   // ダイアログからのコールバックでダイアログを閉じる
   const closeDialog = () => {
@@ -52,7 +54,10 @@ const UploadImage = ({
         ref.getDownloadURL().then((url: string) => {
           db.collection('images')
             .doc(`${calendarDate.split('T')[0]}`)
-            .set({ downloadUrl: url });
+            .set({
+              downloadUrl: url,
+              date: calendarDate.split('T')[0],
+            });
         });
       })
       .then(() => {
@@ -72,10 +77,12 @@ const UploadImage = ({
         startIcon={<CloudUploadIcon />}>
         アップロード
       </Button>
-      <UploadingDialog
+      <LoadingDialog
         isOpen={isDialogOpen}
         onClose={closeDialog}
-        hasUploaded={hasUploaded}
+        hasProcessed={hasUploaded}
+        loadingMessage={LOADING_MESSAGE}
+        loadedMessage={LOADED_MESSAGE}
       />
     </>
   );
