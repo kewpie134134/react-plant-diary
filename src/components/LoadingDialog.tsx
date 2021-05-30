@@ -8,13 +8,13 @@ interface Props {
   /** このダイアログを閉じるときのコールバック */
   onClose?: () => void;
   /** 画像のアップロードが完了したかのフラグ */
-  hasUploaded: boolean;
+  hasProcessed: boolean;
 }
 
 const LoadingDialog = ({
   isOpen,
   onClose,
-  hasUploaded,
+  hasProcessed,
 }: Props): JSX.Element => {
   // ダイアログに表示するメッセージを保持するためのステート
   const [dialogMessage, setDialogMessage] =
@@ -36,10 +36,10 @@ const LoadingDialog = ({
 
   useEffect(() => {
     // 画像アップロード状態ごとによるメッセージ
-    hasUploaded
+    hasProcessed
       ? setDialogMessage('画像をアップロードしました！')
       : setDialogMessage('画像アップロード中...');
-  }, [hasUploaded]);
+  }, [hasProcessed]);
 
   // スタイルのカスタマイズ
   const customStyles: ReactModal.Styles = {
@@ -65,7 +65,7 @@ const LoadingDialog = ({
       onRequestClose={handleClose}
       style={customStyles}
       contentLabel="Settings">
-      {hasUploaded ? null : (
+      {hasProcessed ? null : (
         <ReactLoading type="spin" color="#0000ff" height={32} width={32} />
       )}
       {dialogMessage}

@@ -78,7 +78,7 @@ const UploadImage = ({
       <LoadingDialog
         isOpen={isDialogOpen}
         onClose={closeDialog}
-        hasUploaded={hasUploaded}
+        hasProcessed={hasUploaded}
       />
     </>
   );
