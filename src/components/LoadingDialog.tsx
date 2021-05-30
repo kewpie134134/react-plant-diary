@@ -7,8 +7,8 @@ interface Props {
   isOpen: boolean;
   /** このダイアログを閉じるときのコールバック */
   onClose?: () => void;
-  /** 画像のアップロードが完了したかのフラグ */
-  hasProcessed: boolean;
+  /** 処理が完了したかのフラグ */
+  hasProcessed?: boolean;
 }
 
 const LoadingDialog = ({
