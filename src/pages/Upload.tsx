@@ -23,18 +23,18 @@ const Upload = (): JSX.Element => {
           <Container maxWidth="sm">
             <Typography
               component="h1"
-              variant="h2"
+              variant="h4"
               align="center"
               color="textPrimary"
               gutterBottom>
               🌻 画像を登録 🌻
             </Typography>
             <Typography
-              variant="h5"
+              variant="h6"
               align="center"
               color="textSecondary"
               paragraph>
-              毎朝のひまわりの写真を登録してね！
+              毎朝のひまわり写真を登録してね！
             </Typography>
             <SelectImage setPreview={setPreview} />
             <PreviewRender

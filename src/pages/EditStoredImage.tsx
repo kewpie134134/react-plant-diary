@@ -89,14 +89,14 @@ const EditStoredImage = (): JSX.Element => {
           <Container maxWidth="sm">
             <Typography
               component="h1"
-              variant="h2"
+              variant="h4"
               align="center"
               color="textPrimary"
               gutterBottom>
               🌻 画像を編集 🌻
             </Typography>
             <Typography
-              variant="h5"
+              variant="h6"
               align="center"
               color="textSecondary"
               paragraph>

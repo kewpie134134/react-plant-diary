@@ -15,18 +15,18 @@ const Home = (): JSX.Element => {
           <Container maxWidth="sm">
             <Typography
               component="h1"
-              variant="h2"
+              variant="h4"
               align="center"
               color="textPrimary"
               gutterBottom>
               🌻 ひまわり日記 🌻
             </Typography>
             <Typography
-              variant="h5"
+              variant="h6"
               align="center"
               color="textSecondary"
               paragraph>
-              日々成長するにひまわりをご覧ください！
+              日々のひまわりをご覧ください！
             </Typography>
           </Container>
         </div>
