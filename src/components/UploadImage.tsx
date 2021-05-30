@@ -18,6 +18,8 @@ const UploadImage = ({
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   // 画像アップロード完了フラグ
   const [hasUploaded, setHasUploaded] = useState<boolean>(false);
+  const LOADING_MESSAGE = '画像アップロード中...';
+  const LOADED_MESSAGE = '画像をアップロードしました！';
 
   // ダイアログからのコールバックでダイアログを閉じる
   const closeDialog = () => {
@@ -79,6 +81,8 @@ const UploadImage = ({
         isOpen={isDialogOpen}
         onClose={closeDialog}
         hasProcessed={hasUploaded}
+        loadingMessage={LOADING_MESSAGE}
+        loadedMessage={LOADED_MESSAGE}
       />
     </>
   );

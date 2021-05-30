@@ -30,6 +30,7 @@ const ShowStoredImages = (): JSX.Element => {
   const closeDialog = () => {
     setIsDialogOpen(false);
   };
+  const LOADING_MESSAGE = '画像取得中...';
 
   // Firestore から取得した FireStrage 上の画像ダウンロード URL を非同期で格納する箱を作成
   const [imageUrls, setImageUrls] = useState<ImageUrlsProps[]>([]);
@@ -88,7 +89,11 @@ const ShowStoredImages = (): JSX.Element => {
           ))}
         </Grid>
       </Container>
-      <LoadingDialog isOpen={isDialogOpen} onClose={closeDialog} />
+      <LoadingDialog
+        isOpen={isDialogOpen}
+        onClose={closeDialog}
+        loadingMessage={LOADING_MESSAGE}
+      />
     </>
   );
 };

@@ -9,16 +9,21 @@ interface Props {
   onClose?: () => void;
   /** 処理が完了したかのフラグ */
   hasProcessed?: boolean;
+  /** ローディング中のメッセージ */
+  loadingMessage: string;
+  /** ローディング完了時のメッセージ */
+  loadedMessage?: string;
 }
 
 const LoadingDialog = ({
   isOpen,
   onClose,
   hasProcessed,
+  loadingMessage,
+  loadedMessage = '',
 }: Props): JSX.Element => {
   // ダイアログに表示するメッセージを保持するためのステート
-  const [dialogMessage, setDialogMessage] =
-    useState<string>('画像アップロード中...');
+  const [dialogMessage, setDialogMessage] = useState<string>(loadingMessage);
 
   // 具体的に #root 要素などを指定したほうがよい？
   ReactModal.setAppElement('body');
@@ -37,9 +42,9 @@ const LoadingDialog = ({
   useEffect(() => {
     // 画像アップロード状態ごとによるメッセージ
     hasProcessed
-      ? setDialogMessage('画像をアップロードしました！')
-      : setDialogMessage('画像アップロード中...');
-  }, [hasProcessed]);
+      ? setDialogMessage(loadedMessage)
+      : setDialogMessage(loadingMessage);
+  }, [hasProcessed, loadingMessage, loadedMessage]);
 
   // スタイルのカスタマイズ
   const customStyles: ReactModal.Styles = {
