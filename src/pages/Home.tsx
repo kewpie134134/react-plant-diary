@@ -9,7 +9,7 @@ const Home = (): JSX.Element => {
   const classes = useHomeStyles();
   return (
     <>
-      <Header pageName="ホーム" />
+      <Header />
       <main>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">

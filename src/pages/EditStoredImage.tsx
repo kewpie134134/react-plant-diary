@@ -83,7 +83,7 @@ const EditStoredImage = (): JSX.Element => {
 
   return (
     <>
-      <Header pageName="画像編集" />
+      <Header />
       <main>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">

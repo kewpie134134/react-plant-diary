@@ -17,7 +17,7 @@ const Upload = (): JSX.Element => {
 
   return (
     <>
-      <Header pageName="アップロード" />
+      <Header />
       <main>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">

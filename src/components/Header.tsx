@@ -4,18 +4,14 @@ import { AppBar, CssBaseline, Toolbar, Typography } from '@material-ui/core';
 
 import Logout from './Logout';
 
-type HeaderProps = {
-  pageName: string;
-};
-
-const Header = ({ pageName }: HeaderProps): JSX.Element => {
+const Header = (): JSX.Element => {
   return (
     <header>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            {`🌻 ひまわり日記 🌻  -- ${pageName} --`}
+            {`🌻 ひまわり日記 🌻`}
           </Typography>
         </Toolbar>
       </AppBar>
