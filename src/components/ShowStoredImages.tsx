@@ -29,7 +29,7 @@ const ShowStoredImages = (): JSX.Element => {
   // FireStorage に格納されている画像の downloadUrl 情報を格納する。
   useEffect(() => {
     // FireStore 上の ドキュメント[images] 配下にあるデータを取得する
-    const docRef = db.collection('images').get();
+    const docRef = db.collection('images').orderBy('date', 'desc').get();
     // 取得したデータを imageUrls[] に格納する
     docRef.then((snapshot) => {
       snapshot.forEach((doc) => {
