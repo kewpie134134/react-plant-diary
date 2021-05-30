@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 import { db, storage } from '../firebase/Firebase';
-import UploadingDialog from './UploadingDialog';
+import LoadingDialog from './LoadingDialog';
 
 type UploadImageType = {
   dataUri: string;
@@ -75,7 +75,7 @@ const UploadImage = ({
         startIcon={<CloudUploadIcon />}>
         アップロード
       </Button>
-      <UploadingDialog
+      <LoadingDialog
         isOpen={isDialogOpen}
         onClose={closeDialog}
         hasUploaded={hasUploaded}

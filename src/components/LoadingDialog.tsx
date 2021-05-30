@@ -11,7 +11,7 @@ interface Props {
   hasUploaded: boolean;
 }
 
-const UploadingDialog = ({
+const LoadingDialog = ({
   isOpen,
   onClose,
   hasUploaded,
@@ -73,4 +73,4 @@ const UploadingDialog = ({
   );
 };
 
-export default UploadingDialog;
+export default LoadingDialog;
