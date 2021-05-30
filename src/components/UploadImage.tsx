@@ -52,7 +52,10 @@ const UploadImage = ({
         ref.getDownloadURL().then((url: string) => {
           db.collection('images')
             .doc(`${calendarDate.split('T')[0]}`)
-            .set({ downloadUrl: url });
+            .set({
+              downloadUrl: url,
+              date: calendarDate.split('T')[0],
+            });
         });
       })
       .then(() => {
